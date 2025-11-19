@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="pretty-atom-feed.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Blog Title</title>
+  <subtitle>This is a longer description about your blog.</subtitle>
+  <link href="https://example.com/feed/feed.xml" rel="self" />
+  <link href="https://example.com/" />
+  <updated>2025-11-12T00:00:00Z</updated>
+  <id>https://example.com/</id>
+  <author>
+    <name>Your Name</name>
+  </author>
+  <entry>
+    <title>Agile code, FOSS and context switching</title>
+    <link href="https://example.com/blog/agile-code-foss-and-context-switching/" />
+    <updated>2025-11-12T00:00:00Z</updated>
+    <id>https://example.com/blog/agile-code-foss-and-context-switching/</id>
+    <content type="html">&lt;p&gt;Developing 11tyCMS has taught me so much about the impact of agile code and productivity. In early alpha, the code base was messy, inconsistent and difficult to follow. There were many flaws and excentricisities that made it extremely difficult to work with: all causing frequent bugs, slowing down debugging and draining energy.&lt;/p&gt;
+&lt;p&gt;I had spent so much time in &amp;quot;MVP mode&amp;quot; that I lost sight of the quality I was aiming for. It was fair enough, with my work commitments, the energy and time I had to dedicate to this project meant it was difficult. But knowing I would open the source code up motivated me to ensure that any contributors had a code base to work with that was lean, understandable and fun to work with.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
