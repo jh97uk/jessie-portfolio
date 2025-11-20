@@ -15,8 +15,8 @@
     <link href="https://example.com/blog/agile-code-foss-and-context-switching/" />
     <updated>2025-11-12T00:00:00Z</updated>
     <id>https://example.com/blog/agile-code-foss-and-context-switching/</id>
-    <content type="html">&lt;p&gt;Developing 11tyCMS has taught me so much about the impact of agile code on productivity. In early alpha, the code was inconsistent and difficult to follow. There were many quirks, all causing frequent bugs, slowing down debugging and draining  my energy.&lt;/p&gt;
-&lt;p&gt;I spent so much time in &amp;quot;MVP mode&amp;quot;, I lost sight of the quality I was aiming for: adaptable code that worked with me, not against me. It was fair enough, with my work commitments, the energy and time I had for this project made it difficult to achieve. However, knowing I would open the source code up motivated me to refactor. I wanted a code base that other developers could work with, without feeling guilt or shame that they&#39;d struggle to understand everything. A FOSS project can only be as good as the contributors you&#39;re lucky enough to have!&lt;/p&gt;
+    <content type="html">&lt;p&gt;Developing 11tyCMS has taught me so much about the impact of agile code on productivity. In early alpha, the code was inconsistent and difficult to follow. There were many quirks, all causing frequent bugs, slowing down debugging and draining  my energy. It was starting to put me off working on it.&lt;/p&gt;
+&lt;p&gt;I spent so much time in &amp;quot;MVP mode&amp;quot;, I lost sight of the quality I was aiming for: adaptable code that worked with me, not against me. With work, the time and energy it difficult to achieve. But, knowing I&#39;m opening the source code soon  motivated me to refactor. I wanted a code base that other developers could work with, without worrying they&#39;d struggle to understand everything. A FOSS project can only be as good as the contributors you&#39;re lucky enough to have!&lt;/p&gt;
 </content>
   </entry>
 </feed>
