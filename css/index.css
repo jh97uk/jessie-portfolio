@@ -85,6 +85,7 @@ main {
     margin: 0px auto;
     padding-top: var(--content-padding);
     padding-bottom: var(--content-padding);
+    box-sizing:border-box;
 }
 
 .container {
