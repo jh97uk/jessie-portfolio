@@ -413,7 +413,9 @@ article h4{
 a.button:hover{
     background-color: var(--card-color);
 }
-
+pre[class*="language-"]{
+    background-color: var(--card-color);
+}
 @media (max-width: 900px) {
 
     section,
@@ -429,6 +431,7 @@ a.button:hover{
         gap: 25px;
     }
 }
+
 
 @media (max-width:750px) {
     .cards {
