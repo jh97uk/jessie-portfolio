@@ -168,7 +168,9 @@ section h2 {
 section.contrast h2 {
     color: white;
 }
-
+section:last-of-type{
+    margin-bottom:var(--section-gap);
+}
 
 
 .cards {
