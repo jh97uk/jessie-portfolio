@@ -245,7 +245,7 @@ section:last-of-type{
 
 .card p {
     color: var(--card-text-primary);
-    margin-top:0px;
+    margin-top:5px;
 }
 
 .card h3 {
