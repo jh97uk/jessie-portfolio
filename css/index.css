@@ -302,6 +302,7 @@ section:last-of-type{
     border-top-left-radius: var(--squarcle-radius);
     border-top-right-radius: var(--squarcle-radius);
     width: 100%;
+    height:auto;
 }
 
 .card.base {
