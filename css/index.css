@@ -475,6 +475,9 @@ a.button:hover{
 pre[class*="language-"]{
     background-color: var(--card-color);
 }
+ul li{
+    color:var(--card-text-primary);
+}
 @media (max-width: 900px) {
 
     section,
