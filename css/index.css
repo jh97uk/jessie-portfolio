@@ -130,6 +130,19 @@ main {
     flex-direction: column;
     gap: 0;
 }
+.hover-enlarge{
+    transition-duration: 0.30s;
+}
+.hover-enlarge:hover{
+    transform: scale(1.015);
+}
+a{
+    transition:all 0.5s ease;
+}
+a:hover{
+    
+    filter:brightness(1.18);
+}
 
 nav {
     display: flex;
