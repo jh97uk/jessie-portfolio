@@ -494,6 +494,9 @@ ul li{
 ul li:not(:last-child) {
 margin-bottom: 0.75rem;
 }
+nav li{
+    margin-bottom:unset !important;
+}
 @media (max-width: 900px) {
 
     section,
