@@ -431,7 +431,7 @@ section.split .card.info{
     top:40px;
     left:0;
     height:fit-content;
-    min-width:200px;
+    min-width:225px;
     display:flex; 
     flex-direction:column; 
     color:white;
