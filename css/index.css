@@ -36,6 +36,7 @@
 
 
 :root {
+    --main-bg:white;
     --primary-color: #c03ec0;
     --secondary-color: #3a1951;
     --card-color: #633e82;
@@ -109,7 +110,7 @@ header.hero h1 em {
     display:none;
 }
 .container{
-    background-color: white;
+    background-color: var(--main-bg);
 }
 .container,
 main {
@@ -575,4 +576,16 @@ nav li{
     .wave:nth-of-type(2){
         animation: none;
     }
+}
+
+@media (prefers-color-scheme: dark) {
+ :root{
+    --main-bg:rgb(37,7, 45);
+    --primary-color:hsl(300, 100%, 68%);
+    --text-emphasis-color:#ef76f1;
+    --link-color:rgb(249, 166, 180);
+ }
+ .hero p, .hero h1{
+    color:#f6dbff;
+ }
 }
