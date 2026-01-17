@@ -292,6 +292,7 @@ section .card.base:not(:last-child){
 }
 
 .card.base header span {
+    min-width: 100px;
     align-self: center;
     color: var(--text-color-tertiary);
 }
