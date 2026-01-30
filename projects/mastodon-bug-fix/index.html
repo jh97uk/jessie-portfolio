@@ -67,7 +67,12 @@
                 <time datetime="2023-10-12T00:00:00.000Z">Oct 12, 2023</time>
             </span>
         </header>
-        <p>Mastodon is a free and open source, federated social network. Mastodon is part of the fediverse, which is a network of Mastodon (and others!) instances that connect together to form one big, mostly interconnected social network. Each instance has its own rules, and they get to decide which instances they connect (or &quot;federate&quot;) with based on these rules. They all have their own subcultures and community niches! It's very fun.</p>
+        <h2 id="key-achievements">Key achievements:</h2>
+<ul>
+<li>Contributed to Mastodon (FOSS) by diagnosing and patching a bug for the emoji picker.</li>
+<li>Merged my fix into the main code base, improving the UX for over 1 million active users.</li>
+</ul>
+<p>Mastodon is a free and open source, federated social network. Mastodon is part of the fediverse, which is a network of Mastodon (and others!) instances that connect together to form one big, mostly interconnected social network. Each instance has its own rules, and they get to decide which instances they connect (or &quot;federate&quot;) with based on these rules. They all have their own subcultures and community niches! It's very fun.</p>
 <p>I was writing a post on my instance, and went to insert an emoji. When I tried to close the emoji picker, it flashed and came back up again. It blocked the post button and made it impossible to do anything. So, I did what any good FOSS enthusiast would do: I downloaded the source code to investigate the problem!</p>
 <h2 id="the-problem">The problem</h2>
 <p>On first glance, I saw that 2 things controlled the toggle state of the emoji picker:</p>
