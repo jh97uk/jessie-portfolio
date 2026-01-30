@@ -643,11 +643,14 @@ nav li {
     }
 
     .above-water header {
-        margin-bottom: calc(var(--section-gap) - 40px) !important;
+        margin-bottom: calc(var(--section-gap) - 60px) !important;
     }
 
     nav h2 {
         display: none;
+    }
+    header.hero img{
+        width:45px;
     }
 
     .mob-only {
