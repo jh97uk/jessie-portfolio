@@ -423,7 +423,7 @@ article {
     margin-bottom: 25px;
 }
 
-article:last-child {
+article:last-child, article:last-of-type{
     margin-bottom: 0px;
 }
 
