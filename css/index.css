@@ -208,6 +208,13 @@ a {
     font-weight: bold;
 }
 
+article a{
+    text-decoration: underline;
+}
+article header a{
+    text-decoration: none;
+}
+
 .hero p {
     font-size: 1.125rem;
     margin-top: unset;
@@ -610,7 +617,11 @@ ul li:not(:last-child) {
 nav li {
     margin-bottom: unset !important;
 }
-
+@media (min-width:2160px){
+    section{
+        width:1024px;
+    }
+}
 @media (max-width: 900px) {
 
     section,
