@@ -706,6 +706,9 @@ nav li {
     .cards {
         grid-template-columns: 1fr;
     }
+    .card.language{
+        width:100%;
+    }
 }
 
 @media (prefers-reduced-motion) {
