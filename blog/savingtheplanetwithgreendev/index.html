@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jessie Heald - 11tyCMS</title>
+    <title>Jessie Heald - Saving the planet with green development: how eco, agile code will save the world (draft)</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,7 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="A FOSS, local, subscription-free CMS for 11ty, powered by React &amp; Electron! It&#39;s been featured on THE 11ty Meetup and has 100+ Mastodon followers.">
+    <meta name="description" content="How does coding to save the planet sound? How about dramatically improving your users&#39; UX? Or significant savings on operational costs? What if I told you green coding could achieve all 3? Green coding is your answer...">
     
 </head>
 
@@ -57,161 +57,33 @@
         </div>
 
         <main>
-            <section class="split">
+            
+<section>
     <article>
         <header>
             <a href="#">
-                <h1 id="11tycms">11tyCMS</h1>
+                <h1 id="saving-the-planet-with-green-development-how-eco-agile-code-will-save-the-world-draft">Saving the planet with green development: how eco, agile code will save the world (draft)</h1>
             </a>
             <span>
-                <time datetime="2025-04-12T00:00:00.000Z">Apr 12, 2025</time>
+                <time datetime="2026-02-19T15:33:56.706Z">Feb 19, 2026</time>
             </span>
         </header>
-        <p><picture><source type="image/avif" srcset="/img/RbK2yVJLj5-1824.avif 1824w" sizes="100vw"><source type="image/webp" srcset="/img/RbK2yVJLj5-1824.webp 1824w" sizes="100vw"><img loading="lazy" decoding="async" src="/img/RbK2yVJLj5-1824.png" alt="" width="1824" height="1428"></picture></p>
-<h2 id="key-achievements">🎯 Key achievements:</h2>
-<ul>
-<li>
-<p>Developed a FOSS, local, subscription free CMS for 11ty, powered by React, Zustand &amp; Electron.</p>
-</li>
-<li>
-<p>Presented live on THE Eleventy Meetup and gained 100+ Mastodon followers.</p>
-</li>
-<li>
-<p>Surveyed 11ty users to integrate new features and plan development, design and improve user experience.</p>
-</li>
-</ul>
-<h2 id="what-is-11ty">What is 11ty?</h2>
-<p>Eleventy is a static site generator (SSG). An SSG is a program that takes in content (markdown files in 11ty's case), and uses it to output a flat HTML file to upload to a web server. This is in contrast to WordPress, which dynamically generates a page with PHP code from templates and post data in an SQL database.</p>
-<h3 id="why-use-an-ssg-like-11ty">Why use an SSG like 11ty?</h3>
-<p>Because hosting a CMS is resource intensive, requires maintenance and its a security risk! If I have a WordPress website, I have to have a database, I need to make sure its configured securely, that all the settings are correct and that everything's locked down. But with an SSG site? All I have to worry about is that my HTML files are on the web server.</p>
-<p>Whenever a user visits a SSG site, the web server just chucks them the HTML file. Much more efficient, far less security woes!</p>
-<h2 id="what-is-11tycms">What is 11tyCMS?</h2>
-<p>11tyCMS is a local, serverless, and FOSS content management system for 11ty websites. You simply install 11tyCMS, open the source folder of your 11ty site, and 11tyCMS will give you a fully fledged CMS, right inside an electron app! No need for servers, or complicated database setups... Just you, your writing and the indie web (and beyond!). </p>
-<h2 id="why-did-you-start-11tycms">Why did you start 11tyCMS?</h2>
-<p>I fell in love with 11ty last year. Its <em>so</em> fast to work with, and unbelievably flexible. You can do anything with it. But I noticed something: when I started my 11ty blog, I was writing all my Markdown posts in VS Code. It was a grim experience. No rich text editor, and... I was spending all day at work in VS Code, I didn't want to do my recreational writing in it!</p>
-<p>So I began my search for an 11ty CMS. I couldn't find anything I wanted. I didn't want any databases or servers to deal with. Most of the solutions out there relied on servers or paid subscriptions. No good! I wanted something FOSS. And thus, 11tyCMS was born.</p>
-<p>I'm so excited for 11tyCMS's future, as there's barely anything like it. My goal is to empower the indie web. The internet has become so centralised to a select few platforms, and I think we've strayed too far away from what made the internet so great: weird, quirky little websites where people gush about their hyperfixations. If 11tyCMS can be a part of making that easier for people, I'll have done my job right.</p>
-<h2 id="what-technology-does-it-use">What technology does it use?</h2>
-<h3 id="electron">Electron</h3>
-<p>I didn't want to do this. People hate Electron, and I understand why: its very resource intensive, basically every other app on your computer is probably powered by it. Its a massive ram sink. However, it uses one of the most popular languages, it's cross platform and has rich resources and documentation.</p>
-<p>I'm a JavaScript developer primarily, so it felt like the natural fit. I would have preferred Tauri otherwise. I don't mind learning Rust, but this is a side project and I don't have a lot of time. That and so many people know JavaScript, which means more developers can donate their time and skills to the project. That and JS has a rich range of frameworks and libraries to use.</p>
-<h3 id="react">React</h3>
-<p>This one's a no brainer. I've been making projects with React since 2017. I know it like the back of my hand, it has a fantastic library ecosystem and most JS devs are familiar with it. </p>
-<h3 id="zustand">Zustand</h3>
-<p>For my state management, I opted for Zustand. I didn't want to use Redux because it felt way overkill and far too heavy and complicated to learn for newcomer contributors. I want the codebase for this project to be as simple and easy to navigate for beginner contributors as possible. Zustand fits this bill!</p>
-<p>Its fantastically easy to work with, super fast, super lightweight and very agile.</p>
-<h3 id="milkdown">Milkdown</h3>
-<p>For the Markdown editor, I'm currently using Milkdown. It's a fantastic FOSS Markdown editor, with amazing rich text support and a thriving plugin ecosystem. I chose this editor for its performance and the ability to configure it to take images from my custom <code>eleventy</code> protocol (I made a protocol in Electron to give access to the 11ty site's assets folder). It feels amazing to work in and gives a great UX!</p>
-<h3 id="sqlite">SQLite</h3>
-<p>When I said that 11tyCMS didn't use databases... I kind of lied. It does. But its not central to its function. It needs it to allow you to search through your posts by metadata. When you open your site in 11tyCMS, all the posts/files along with their metadata get cached into a SQLite db in memory. This allows you to paginate posts easily and search by metadata.</p>
-<h3 id="chokidar">Chokidar</h3>
-<p>I use Chokidar to monitor file changes, vital for keeping the SQLite cache up to date! I monitor any delete, add or edit activity and update the SQLite cache accordingly with this.</p>
-<h2 id="what-stage-of-development-is-it-at">What stage of development is it at?</h2>
-<p>It's in early beta right now, I just need to publish the builds! The project started off in what I call &quot;MVP mode&quot;, which is when I code all the essential functionality, just so I can get a grip on the shape of the app and what it needs to do. After that? I start refactoring things and working on the design etc. But now, we're pretty firmly out of MVP mode, and have entered beta! </p>
-<p>The features we have so far:</p>
-<ul>
-<li>
-<p>A rich markdown editor</p>
-</li>
-<li>
-<p>The ability to create and delete collections</p>
-</li>
-<li>
-<p>A site data editor, so you can change your site metadata and settings</p>
-</li>
-<li>
-<p>Build and publish support</p>
-</li>
-<li>
-<p>Support for multiple sites</p>
-</li>
-<li>
-<p>Image upload support</p>
-</li>
-<li>
-<p>A fully fledged metadata editor</p>
-</li>
-</ul>
-<p>There's so much more to come though, this is just the beginning.</p>
-<h2 id="whats-next-for-11tycms">What's next for 11tyCMS?</h2>
-<p>I have so many plans! </p>
-<ul>
-<li>
-<p>A better website, the current one is just a placeholder!</p>
-</li>
-<li>
-<p>Rewrite all code in TypeScript</p>
-</li>
-<li>
-<p>Integrated terminal</p>
-</li>
-<li>
-<p>Integrated code editor for quick tweaking of your templates and stylesheets</p>
-</li>
-<li>
-<p>Premade build and publish templates</p>
-</li>
-<li>
-<p>Custom color scheme support</p>
-</li>
-<li>
-<p>Responsive design</p>
-</li>
-<li>
-<p>Further accessibility improvements</p>
-</li>
-<li>
-<p>Nested collection support</p>
-</li>
-<li>
-<p>More metadata options</p>
-</li>
-<li>
-<p>Server side version</p>
-<ul>
-<li>With authentication and permissions support</li>
-</ul>
-</li>
-<li>
-<p>A plugin store</p>
-</li>
-</ul>
+        <p>The internet is littered with slow websites containing unoptimised images, unminified JavaScript, and frameworks with 1000s of weighty dependancies. Each one with ludicrous bandwidth requirements (spare a thought for those of us on limited data plans!). </p>
+<p>Technology has grown: our phones and computers are more powerful than ever, our connections are faster. So much so, much of the above isn't too noticeable a lot of the time.</p>
+<p>Developers built the internet as we know it, I'm no exception. I've been guilty of all of the sins listed above. The problem is, a lot of us don't test with devices of varying specs. Our machines tend to be powerful, our connection's fast... So when testing our web apps or sites? The deadly sins of the bloated internet often go hidden. </p>
+<p>On <em>my</em> machine (an M1 Macbook Pro with 16GB of RAM and a 300mbit connection), this site works beautifully! But can the same be said for Sally with her iPhone 8 on a patchy 4G connection and limited data plan? These problems often go missed, reaching production with users like Sally lamenting at the UX. </p>
+<p>&quot;But what does any of this have to do with the climate?!&quot; I hear you cry. Well that's the next thing:</p>
+<p>The AI era is here, and compute is getting ever more expensive. Whether that's the dwindling supply of RAM and storage, or limited bandwidth... We're more reliant than ever on increasingly scarce resources that are taken by AI. Worse yet? Some of these data centres are polluting our air, guzzling our water and using fossil fuel energy.</p>
+<p>Whether you're thinking of the compute expenses in a cloud server market riddled by scarcity, or worried about the ecological impact of data centres on our climate: developers must step up to the challenge, for our users, the environment and (if your priorities don't lie in the former) our operational costs! If we don't our climate will perish, our users' experiences will suffer and our compute costs will hemorrhage.</p>
+<p>So what do we do about this? I'm glad you asked...</p>
+<h2 id="cleaner-faster-code">Cleaner, faster code</h2>
+<p>The more efficient your code is, the less compute it'll use. </p>
+<h3 id="does-this-really-need-to-be-dynamic">Does this <em>really</em> need to be dynamic?</h3>
 <br>
-<p>Overall? I'm <em>so</em> excited to see where I can take this project. </p>
+<h2 id="optimising-content">Optimising content</h2>
+<h2 id="minifying-and-compression">Minifying and compression</h2>
 
     </article>
-    <div class="card info">
-
-        <b>Languages:</b>
-        <ul class="inline-list">
-            
-            <li class="pill dark">Javascript</li>
-            
-            <li class="pill dark">SQLite</li>
-            
-            <li class="pill dark">CSS</li>
-            
-        </ul>
-        <b>Technologies:</b>
-        <ul class="inline-list">
-            
-            <li class="pill dark">Electron</li>
-            
-            <li class="pill dark">React</li>
-            
-            <li class="pill dark">Zustand</li>
-            
-            <li class="pill dark">Markdown</li>
-            
-            <li class="pill dark">11ty</li>
-            
-            <li class="pill dark">SQLite</li>
-            
-            <li class="pill dark">NodeJS</li>
-            
-        </ul>
-        <a href="https://codeberg.org/11tyCMS/11tyCMS" style="font-weight:bold;">Link</a>
-    </div>
 </section>
         </main>
     </div>
