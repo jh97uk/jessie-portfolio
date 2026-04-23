@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Jessie Heald</title>
+    <title>Adding custom rendering to HTML elements in 11ty/Build Awesome - Jessie Heald</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,7 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="My writing about everything coding and beyond!">
+    <meta name="description" content="Ever wanted to change how HTML renders in 11ty? Perhaps inject a &lt;span&gt; or two into a link? Well have I got the post for you...">
     
 </head>
 
@@ -57,45 +57,48 @@
         </div>
 
         <main>
-            <section class="contrast">
-    <h2 id="i-m-writing-about">I'm writing about</h2>
-        <article>
-    <header>
-        <a href="/blog/adding-custom-rendering-to-html-elements-in-11ty/">
-            <h3 id="adding-custom-rendering-to-html-elements-in-11ty-build-awesome">Adding custom rendering to HTML elements in 11ty/Build Awesome</h3>
-        </a>
-        <p>
-            <time datetime="">Apr 23, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            Ever wanted to change how HTML renders in 11ty? Perhaps inject a &lt;span&gt; or two into a link? Well have I got the post for you...
-        
+            
+<section>
+    <article>
+        <header>
+            <a href="#">
+                <h1 id="adding-custom-rendering-to-html-elements-in-11ty-build-awesome">Adding custom rendering to HTML elements in 11ty/Build Awesome</h1>
+            </a>
+            <span>
+                <time datetime="2026-04-23T20:18:13.934Z">Apr 23, 2026</time>
+            </span>
+        </header>
+        <p>The other week, I was thinking how cool it'd be to have a link preview plugin for 11ty (completely static of course!). You'd be able to hover on a link, and it'd give you the title of the page, along with its description etc, perhaps even an archive.org link. </p>
+<p>I looked into the anatomy of 11ty plugins, what was needed to make one and what developers have access to. What I needed was simple (or so I thought): A way to inject a <code>span</code> element into any links in the <em>content</em> (not the entire page!) of a post.</p>
+<p>I first found <a href="https://www.11ty.dev/docs/transforms/">11ty's</a> <a href="https://www.11ty.dev/docs/transforms/"><code>addTransform</code></a> <a href="https://www.11ty.dev/docs/transforms/">function</a> , but I quickly ruled it out because it targets the whole page. I needed something that targeted the rendering of <em>markdown content only</em>.</p>
+<h2 id="markdown-it-rules-and-markdown-tokens">markdown-it rules and Markdown tokens</h2>
+<p>Because I'm new(ish) to Eleventy, I thought I'd ask the lovely 11ty veterans on their Discord for some help. Chris very helpfully referred me to <a href="https://github.com/chriskirknielsen/dotcom-2024/blob/7d4461e3f4b7da05e9d14314e3c9c6aa7a791140/config/libraries/markdown.js#L131-L152">his own simplified implementation</a> of Nicolas Hoizey's <a href="https://nicolas-hoizey.com/articles/2021/02/25/accessible-anchor-links-with-markdown-it-and-eleventy/">anchor links code</a>.</p>
+<p>Being totally honest, I got a bit lost here... I needed to understand how 11ty renders out Markdown first! 11ty uses <a href="https://github.com/markdown-it/markdown-it"><code>markdown-it</code></a>, a fast and lightweight Markdown parser for JavaScript. From here, I found the documentation and started digging. If I could intercept how markdown-it renders markdown syntax into HTML elements, then I could easily inject the <code>span</code>s I wanted.</p>
+<p>From there, I learnt that <code>markdown-it</code> has &quot;rules&quot; which are basically how  tokens (pieces of Markdown syntax) render into HTML. For example, if I were to use the bold token in Markdown like this:</p>
+<pre class="language-markdown" tabindex="0"><code class="language-markdown"><span class="token bold"><span class="token punctuation">**</span><span class="token content">test</span><span class="token punctuation">**</span></span></code></pre>
+<p><code>markdown-it</code> then processes that with the <code>strong</code> open and close rules. For example:</p>
+<pre class="language-javascript" tabindex="0"><code class="language-javascript">md<span class="token punctuation">.</span>renderer<span class="token punctuation">.</span>rules<span class="token punctuation">.</span><span class="token function-variable function">strong_open</span>  <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'&lt;b>'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+md<span class="token punctuation">.</span>renderer<span class="token punctuation">.</span>rules<span class="token punctuation">.</span><span class="token function-variable function">strong_close</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'&lt;/b>'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<p>Perfect... If I could somehow intercept the link open or close rule, I could inject my <code>span</code> wherever I wanted in any Markdown link. Armed with the knowledge of <code>markdown-it</code> Chris's solution and Nicolas's both made way more sense, I could now make my own!</p>
+<h2 id="the-solution">The solution</h2>
+<p>I knew what to do with <code>markdown-it</code> to get what I wanted... But how do I do that in 11ty? Well thankfully, 11ty has an <code>amendLibrary</code> function, this can give you direct access to any libraries used in 11ty to modify their function. This would give me direct access to <code>markdown-it</code> . Perfect! </p>
+<pre class="language-javascript" tabindex="0"><code class="language-javascript">eleventyConfig<span class="token punctuation">.</span><span class="token function">amendLibrary</span><span class="token punctuation">(</span><span class="token string">'md'</span><span class="token punctuation">,</span> <span class="token parameter">md</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> defaultRender <span class="token operator">=</span> md<span class="token punctuation">.</span>renderer<span class="token punctuation">.</span>rules<span class="token punctuation">.</span>link_open <span class="token operator">||</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">tokens<span class="token punctuation">,</span> idx<span class="token punctuation">,</span> options<span class="token punctuation">,</span> env<span class="token punctuation">,</span> self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> self<span class="token punctuation">.</span><span class="token function">renderToken</span><span class="token punctuation">(</span>tokens<span class="token punctuation">,</span> idx<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    md<span class="token punctuation">.</span>renderer<span class="token punctuation">.</span>rules<span class="token punctuation">.</span><span class="token function-variable function">link_open</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">tokens<span class="token punctuation">,</span> idx<span class="token punctuation">,</span> options<span class="token punctuation">,</span> env<span class="token punctuation">,</span> self</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">defaultRender</span><span class="token punctuation">(</span>tokens<span class="token punctuation">,</span> idx<span class="token punctuation">,</span> options<span class="token punctuation">,</span> env<span class="token punctuation">,</span> self<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;span>test&lt;/span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> md
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>And in 9 lines of code? Everything worked beautifully. Obviously, these are not link previews, but all the code is there to make that possible.</p>
+<h2 id="but-wait-what-happened-to-truly-static-link-previews">But wait, what happened to truly static link previews?!</h2>
+<p>Once I figured out how to render out custom rules... I started thinking more about whether I <em>really</em> did want link previews. It sounded kind of clunky, like it'd get in the way of the text, that it'd be an accessibility nightmare. I also got concerned about the build times and impact on link traffic. I'd have to come up with a way to cache previews for already &quot;linked&quot; links in the 11ty site. At which point, the build times get more computationally intensive, with much more opportunities for things to go wrong. And honestly? It sounded like not a great UX anyway. </p>
+<p>But what counts the most in all this, is that I learnt something new, and had a lot of fun along the way. Better yet, I get to share with you wonderful folk about how to approach this problem. </p>
+<p>PSA:</p>
+<p>If anyone really <em>is</em> interested in a link preview plugin for 11ty, if there's enough demand, I'd be tempted to make it. It's just, I don't think I'd use it on any of my own sites. </p>
 
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/saving-the-planet-and-your-ux-with-green-dev/">
-            <h3 id="saving-the-planet-and-your-ux-with-green-development">Saving the planet (and your UX) with green development</h3>
-        </a>
-        <p>
-            <time datetime="">Apr 9, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            In a world mired by AI driven scarcity and destruction, how do developers respond? Enter green coding: improving your UX and reducing operational costs... All while helping save the planet!
-        
-
-    </p>
-</article>
-    
-        <a class="button" href="/blog/1/">Next</a>
-    
-    
+    </article>
 </section>
         </main>
     </div>
