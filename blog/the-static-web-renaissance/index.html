@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Jessie Heald</title>
+    <title>The static web renaissance: why SSGs are the future. - Jessie Heald</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,7 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="My writing about everything coding and beyond!">
+    <meta name="description" content="Are you tired of being shackled to your overkill WordPress setup for a basic blog? Fed up of keeping up with security patches and security woes? No fear! Statically generated sites may be just what you need...">
     
 </head>
 
@@ -57,79 +57,63 @@
         </div>
 
         <main>
-            <section class="contrast">
-    <h2 id="i-m-writing-about">I'm writing about</h2>
-        <article>
-    <header>
-        <a href="/blog/the-static-web-renaissance/">
-            <h3 id="the-static-web-renaissance-why-ssgs-are-the-future">The static web renaissance: why SSGs are the future.</h3>
-        </a>
-        <p>
-            <time datetime="">May 13, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            Are you tired of being shackled to your overkill WordPress setup for a basic blog? Fed up of keeping up with security patches and security woes? No fear! Statically generated sites may be just what you need...
-        
+            
+<section>
+    <article>
+        <header>
+            <a href="#">
+                <h1 id="the-static-web-renaissance-why-ssgs-are-the-future">The static web renaissance: why SSGs are the future.</h1>
+            </a>
+            <span>
+                <time datetime="2026-05-13T20:14:51.554Z">May 13, 2026</time>
+            </span>
+        </header>
+        <p>Last year, I wanted a personal blog. I didn't want the burden of databases or CMSs, I wanted it to be lightweight and low maintenance. It needed to be &quot;set and forget&quot;. I wanted as little friction as possible between writing and publishing. I also didn't want to spend anything (or very little) on hosting. </p>
+<p>Basically, I wanted my cake and to eat it too. My options felt very limited... Until I I discovered 11ty, an bonkers fast static site generator. In just under 6 hours I built my first 11ty site from scratch and my love affair with SSGs began.</p>
+<h2 id="definitions">Definitions</h2>
+<p>Before we dive in, let's define some terms:</p>
+<p><strong>Dynamic sites</strong></p>
+<p>When I talk about &quot;dynamic sites&quot;, I mean websites put together by WordPress, Drupal or some JavaScript/PHP framework: The server grabs a bunch of HTML templates, and maps data onto them and outputs the final page. </p>
+<p><strong>Static sites (SSGs)</strong></p>
+<p>Static sites are usually just web servers that serve up HTML files and nothing more. No templating, no databases or CMS's. Simply upload the HTML files, and your page is online!</p>
+<p>They take many forms, sometimes people just manually write their HTML pages and upload them to their server. But some people use static site generators: software that takes HTML templates and maps markdown content onto them, all on your machine, outputting HTML files ready for upload.</p>
+<h2 id="the-great-dynamic-site-shift">The great &quot;dynamic site&quot; shift</h2>
+<p>When the internet started, til the mid/late 2000s, a lot of sites were static. People manually wrote HTML and CSS files, uploading the files via FTP to their web servers. </p>
+<p>But as the web grew, and became more able and complex (with it's users needs), CMS's began taking over. The likes of WordPress became the standard, providing the writers and developers with easy templating, rich text editing tools and a bountiful plugin ecosystem. It even has a database for user comments and auth for private pages! There's a reason it runs 40% of the web today!</p>
+<p>Sadly, we lost simplicity to this great shift. People hosting their hobby blogs, who didn't need a rich plugin ecosystem and fancy databases were quickly cornered: for a good writing and publishing UX, you were stuck with bloat and hassle. Your site <em>required</em> a PHP and MySQL server. You'd be responsible for database security and WordPress updates. Gone are the days of only worrying about the web server!</p>
+<h2 id="the-rise-and-rise-of-ssgs">The rise (and rise) of SSGs</h2>
+<p>I want to preface this with: <em><strong>dynamic sites still have their places!</strong></em></p>
+<p>A business that needs &quot;members only&quot; areas, a reviews system, or comments functionality won't be well served by SSGs. These are areas where dynamic sites have their undeniable strengths. Although, if you're very committed to statically generated sites: there are ways around comments and reviews, but it feels a bit of an anti pattern.</p>
+<p>For me, SSGs really shine for:</p>
+<ul>
+<li>
+<p>Company blogs that don't need comments or user interaction</p>
+</li>
+<li>
+<p>Personal blogs and sites</p>
+</li>
+<li>
+<p>Product and business websites that revolve around relatively static information</p>
+</li>
+</ul>
+<h3 id="the-elephant-in-the-room">The elephant in the room</h3>
+<p>For me, the appeal behind SSGs is hosting a website without Node JS, PHP or database woes! Just write your templates, and your markdown files will be mapped onto said templates. The  HTML files are generated by your SSG- ready for upload.</p>
+<p>With the rise of dynamic sites over the last couple decades, I feel like the writing and publishing UX for static sites has stayed in the early 2000s. Yes, they assemble our templates for us, but none of them have a CMS that maintains the benefits of SSGs: not requiring a server that has support for PHP or JavaScript. And honestly, they probably shouldn't. They should stick to doing what they do best: generating static sites from templates and content.</p>
+<p>This is where my (shameless plug incoming!) main passion project comes in: <a href="https://jessieheald.com/projects/11tycms">11tyCMS</a> is a local first, truly serverless CMS for 11ty (now Build Awesome). It's an electron app, simply open your SSG site's source folder, and it'll give you all your collections and posts in a slick UI, along with your site's settings. Complete with a rich text editor boasting image upload support, you can even publish with a simple click of a button! No terminal required.</p>
+<p>Having an easy SSG &quot;frontend&quot; is the biggest limiting factor to helping future clients and novice bloggers use SSGs. And I hope that trialblazing a new type of CMS like 11tyCMS will help make this more possible in future!</p>
+<h3 id="why-these-compromises-are-worth-it">Why these compromises are worth it</h3>
+<p>OK so: we can't have auth, members only areas or comments... And the options for rich text editing and publishing are quite limited. This obviously makes SSGs a hard sell for the wrong person. But for the right person? The reasons are many!</p>
+<h4 id="resources-and-environmental-impact">Resources and environmental impact</h4>
+<p>For a start, it's less resource intensive. All the HTML files are generated on <em>your</em> computer, and uploaded to the server. Your server only has to serve them. No complicated databases, no chache setups or plugins to worry about. Just your HTML files and a simple nginx or apache web server. Beautiful! Better yet? The simplicity means that the server will use up less resources, making your website greener <em>and</em> cheaper. Win win.</p>
+<h4 id="security">Security</h4>
+<p>Think about it: the likes of WordPress require PHP, a database and a bunch of 3rd party plugins and themes to function. All of these are vulnerability vectors. You have to make sure your WordPress is up to date, along with all its plugins, while also making sure the admin dashboard is appropriately hardened against attackers. This is a lot to think about for a basic blog! With SSGs? All you have to worry about is your web server configuration. It's all HTML files and nothing else!</p>
+<h4 id="the-learning-curve">The learning curve</h4>
+<p>As awesome as WordPress is, it has a massive learning curve. You have to learn all about its templating engine, how all the plugins and themes go together, how to configure it all securely... So much to keep up with!</p>
+<p>If you want to develop a theme for 11ty? You can probably do it over a couple of days tops. It took me only 2 days to make my <a href="https://jessieheald.com/projects/my-portfolio">portfolio theme</a> for 11ty. Using the official 11ty base site templates, you can get away with writing only HTML, no JavaScript or PHP required!</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Obviously, we need to be using the right tools for the right jobs. But in 2026, the internet is riddled with bloat. So many overkill tools are being used for very simple jobs, which increases hosting resources (and carbon emissions), complexity and security concerns. But fortunately for you, the age of rich, easy to use and well supported statically generated sites is on the horizon. It's never been easier to experiment with SSGs. Maybe you'll love them as much as me?</p>
 
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/adding-custom-rendering-to-html-elements-in-11ty/">
-            <h3 id="adding-custom-rendering-to-html-elements-in-11ty-build-awesome">Adding custom rendering to HTML elements in 11ty/Build Awesome</h3>
-        </a>
-        <p>
-            <time datetime="">Apr 23, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            Ever wanted to change how HTML renders in 11ty? Perhaps inject a &lt;span&gt; or two into a link? Well have I got the post for you...
-        
-
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/saving-the-planet-and-your-ux-with-green-dev/">
-            <h3 id="saving-the-planet-and-your-ux-with-green-development">Saving the planet (and your UX) with green development</h3>
-        </a>
-        <p>
-            <time datetime="">Apr 9, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            In a world mired by AI driven scarcity and destruction, how do developers respond? Enter green coding: improving your UX and reducing operational costs... All while helping save the planet!
-        
-
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/what-3-years-of-mentoring-has-taught-me/">
-            <h3 id="what-3-years-and-1000-hours-of-mentoring-taught-me">What 3 years and 1000+ hours of mentoring taught me</h3>
-        </a>
-        <p>
-            <time datetime="">Jan 20, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            I started my tutoring practice in 2020. Off the back of 11 years experience, I taught people from a variety backgrounds across the globe... Here&#39;s what I&#39;ve learnt in my 3 years teaching.
-        
-
-    </p>
-</article>
-    
-        <a class="button" href="/blog/1/">Next</a>
-    
-    
+    </article>
 </section>
         </main>
     </div>

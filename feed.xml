@@ -4,7 +4,7 @@
   <subtitle>I am writing about my experiences as a naval navel-gazer.</subtitle>
   <link href="https://jessieheald.com/feed.xml" rel="self" />
   <link href="https://jessieheald.com/" />
-  <updated>2026-04-23T20:18:13Z</updated>
+  <updated>2026-05-13T20:14:51Z</updated>
   <id>https://jessieheald.com/</id>
   <author>
     <name>Jessie Heald</name>
@@ -247,6 +247,57 @@ md&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;renderer&lt;span
 &lt;p&gt;But what counts the most in all this, is that I learnt something new, and had a lot of fun along the way. Better yet, I get to share with you wonderful folk about how to approach this problem. &lt;/p&gt;
 &lt;p&gt;PSA:&lt;/p&gt;
 &lt;p&gt;If anyone really &lt;em&gt;is&lt;/em&gt; interested in a link preview plugin for 11ty, if there&#39;s enough demand, I&#39;d be tempted to make it. It&#39;s just, I don&#39;t think I&#39;d use it on any of my own sites. &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The static web renaissance: why SSGs are the future.</title>
+    <link href="https://jessieheald.com/blog/the-static-web-renaissance/" />
+    <updated>2026-05-13T20:14:51Z</updated>
+    <id>https://jessieheald.com/blog/the-static-web-renaissance/</id>
+    <content type="html">&lt;p&gt;Last year, I wanted a personal blog. I didn&#39;t want the burden of databases or CMSs, I wanted it to be lightweight and low maintenance. It needed to be &amp;quot;set and forget&amp;quot;. I wanted as little friction as possible between writing and publishing. I also didn&#39;t want to spend anything (or very little) on hosting. &lt;/p&gt;
+&lt;p&gt;Basically, I wanted my cake and to eat it too. My options felt very limited... Until I I discovered 11ty, an bonkers fast static site generator. In just under 6 hours I built my first 11ty site from scratch and my love affair with SSGs began.&lt;/p&gt;
+&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;/h2&gt;
+&lt;p&gt;Before we dive in, let&#39;s define some terms:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic sites&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;When I talk about &amp;quot;dynamic sites&amp;quot;, I mean websites put together by WordPress, Drupal or some JavaScript/PHP framework: The server grabs a bunch of HTML templates, and maps data onto them and outputs the final page. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Static sites (SSGs)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Static sites are usually just web servers that serve up HTML files and nothing more. No templating, no databases or CMS&#39;s. Simply upload the HTML files, and your page is online!&lt;/p&gt;
+&lt;p&gt;They take many forms, sometimes people just manually write their HTML pages and upload them to their server. But some people use static site generators: software that takes HTML templates and maps markdown content onto them, all on your machine, outputting HTML files ready for upload.&lt;/p&gt;
+&lt;h2 id=&quot;the-great-dynamic-site-shift&quot;&gt;The great &amp;quot;dynamic site&amp;quot; shift&lt;/h2&gt;
+&lt;p&gt;When the internet started, til the mid/late 2000s, a lot of sites were static. People manually wrote HTML and CSS files, uploading the files via FTP to their web servers. &lt;/p&gt;
+&lt;p&gt;But as the web grew, and became more able and complex (with it&#39;s users needs), CMS&#39;s began taking over. The likes of WordPress became the standard, providing the writers and developers with easy templating, rich text editing tools and a bountiful plugin ecosystem. It even has a database for user comments and auth for private pages! There&#39;s a reason it runs 40% of the web today!&lt;/p&gt;
+&lt;p&gt;Sadly, we lost simplicity to this great shift. People hosting their hobby blogs, who didn&#39;t need a rich plugin ecosystem and fancy databases were quickly cornered: for a good writing and publishing UX, you were stuck with bloat and hassle. Your site &lt;em&gt;required&lt;/em&gt; a PHP and MySQL server. You&#39;d be responsible for database security and WordPress updates. Gone are the days of only worrying about the web server!&lt;/p&gt;
+&lt;h2 id=&quot;the-rise-and-rise-of-ssgs&quot;&gt;The rise (and rise) of SSGs&lt;/h2&gt;
+&lt;p&gt;I want to preface this with: &lt;em&gt;&lt;strong&gt;dynamic sites still have their places!&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A business that needs &amp;quot;members only&amp;quot; areas, a reviews system, or comments functionality won&#39;t be well served by SSGs. These are areas where dynamic sites have their undeniable strengths. Although, if you&#39;re very committed to statically generated sites: there are ways around comments and reviews, but it feels a bit of an anti pattern.&lt;/p&gt;
+&lt;p&gt;For me, SSGs really shine for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Company blogs that don&#39;t need comments or user interaction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Personal blogs and sites&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Product and business websites that revolve around relatively static information&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;the-elephant-in-the-room&quot;&gt;The elephant in the room&lt;/h3&gt;
+&lt;p&gt;For me, the appeal behind SSGs is hosting a website without Node JS, PHP or database woes! Just write your templates, and your markdown files will be mapped onto said templates. The  HTML files are generated by your SSG- ready for upload.&lt;/p&gt;
+&lt;p&gt;With the rise of dynamic sites over the last couple decades, I feel like the writing and publishing UX for static sites has stayed in the early 2000s. Yes, they assemble our templates for us, but none of them have a CMS that maintains the benefits of SSGs: not requiring a server that has support for PHP or JavaScript. And honestly, they probably shouldn&#39;t. They should stick to doing what they do best: generating static sites from templates and content.&lt;/p&gt;
+&lt;p&gt;This is where my (shameless plug incoming!) main passion project comes in: &lt;a href=&quot;https://jessieheald.com/projects/11tycms&quot;&gt;11tyCMS&lt;/a&gt; is a local first, truly serverless CMS for 11ty (now Build Awesome). It&#39;s an electron app, simply open your SSG site&#39;s source folder, and it&#39;ll give you all your collections and posts in a slick UI, along with your site&#39;s settings. Complete with a rich text editor boasting image upload support, you can even publish with a simple click of a button! No terminal required.&lt;/p&gt;
+&lt;p&gt;Having an easy SSG &amp;quot;frontend&amp;quot; is the biggest limiting factor to helping future clients and novice bloggers use SSGs. And I hope that trialblazing a new type of CMS like 11tyCMS will help make this more possible in future!&lt;/p&gt;
+&lt;h3 id=&quot;why-these-compromises-are-worth-it&quot;&gt;Why these compromises are worth it&lt;/h3&gt;
+&lt;p&gt;OK so: we can&#39;t have auth, members only areas or comments... And the options for rich text editing and publishing are quite limited. This obviously makes SSGs a hard sell for the wrong person. But for the right person? The reasons are many!&lt;/p&gt;
+&lt;h4 id=&quot;resources-and-environmental-impact&quot;&gt;Resources and environmental impact&lt;/h4&gt;
+&lt;p&gt;For a start, it&#39;s less resource intensive. All the HTML files are generated on &lt;em&gt;your&lt;/em&gt; computer, and uploaded to the server. Your server only has to serve them. No complicated databases, no chache setups or plugins to worry about. Just your HTML files and a simple nginx or apache web server. Beautiful! Better yet? The simplicity means that the server will use up less resources, making your website greener &lt;em&gt;and&lt;/em&gt; cheaper. Win win.&lt;/p&gt;
+&lt;h4 id=&quot;security&quot;&gt;Security&lt;/h4&gt;
+&lt;p&gt;Think about it: the likes of WordPress require PHP, a database and a bunch of 3rd party plugins and themes to function. All of these are vulnerability vectors. You have to make sure your WordPress is up to date, along with all its plugins, while also making sure the admin dashboard is appropriately hardened against attackers. This is a lot to think about for a basic blog! With SSGs? All you have to worry about is your web server configuration. It&#39;s all HTML files and nothing else!&lt;/p&gt;
+&lt;h4 id=&quot;the-learning-curve&quot;&gt;The learning curve&lt;/h4&gt;
+&lt;p&gt;As awesome as WordPress is, it has a massive learning curve. You have to learn all about its templating engine, how all the plugins and themes go together, how to configure it all securely... So much to keep up with!&lt;/p&gt;
+&lt;p&gt;If you want to develop a theme for 11ty? You can probably do it over a couple of days tops. It took me only 2 days to make my &lt;a href=&quot;https://jessieheald.com/projects/my-portfolio&quot;&gt;portfolio theme&lt;/a&gt; for 11ty. Using the official 11ty base site templates, you can get away with writing only HTML, no JavaScript or PHP required!&lt;/p&gt;
+&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;Obviously, we need to be using the right tools for the right jobs. But in 2026, the internet is riddled with bloat. So many overkill tools are being used for very simple jobs, which increases hosting resources (and carbon emissions), complexity and security concerns. But fortunately for you, the age of rich, easy to use and well supported statically generated sites is on the horizon. It&#39;s never been easier to experiment with SSGs. Maybe you&#39;ll love them as much as me?&lt;/p&gt;
 </content>
   </entry>
 </feed>
