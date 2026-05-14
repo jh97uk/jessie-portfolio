@@ -77,9 +77,11 @@ h6 {
 }
 
 p:last-of-type {
+  /* margin-bottom: 0px; */
+}
+p:has(time) {
   margin-bottom: 0px;
 }
-
 body,
 canvas {
   width: 100vw;
@@ -340,6 +342,7 @@ section .card.base:not(:last-child) {
 .card p {
   color: var(--card-text-primary);
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .card h3 {
@@ -514,7 +517,9 @@ section.split .card.info a {
   border-radius: var(--squarcle-radius);
   text-align: center;
 }
-
+section.related-posts ul {
+  padding: 0px;
+}
 article p {
   margin-top: unset;
 }
@@ -524,7 +529,13 @@ article h2,
 article h3,
 article h4,
 article h5,
-article h6 {
+article h6,
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
   color: white;
 }
 
