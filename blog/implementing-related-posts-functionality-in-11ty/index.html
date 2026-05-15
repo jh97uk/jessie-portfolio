@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Jessie Heald</title>
+    <title>Implementing &quot;related posts&quot; functionality in 11ty - Jessie Heald</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,7 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="My writing about everything coding and beyond!">
+    <meta name="description" content="Ever wondered how to make posts with related tags show up at the end of your blog post? With a simple filter and a bit of nunjucks magic, you too can have a related posts list!">
     
 </head>
 
@@ -57,45 +57,53 @@
         </div>
 
         <main>
-            <section class="contrast">
-    <h2 id="i-m-writing-about">I'm writing about</h2>
-        <article>
-    <header>
-        <a href="/blog/what-3-years-of-mentoring-has-taught-me/">
-            <h3 id="what-3-years-and-1000-hours-of-mentoring-taught-me">What 3 years and 1000+ hours of mentoring taught me</h3>
-        </a>
-        <p>
-            <time datetime="">Jan 20, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            I started my tutoring practice in 2020. Off the back of 11 years experience, I taught people from a variety backgrounds across the globe... Here&#39;s what I&#39;ve learnt in my 3 years teaching.
-        
+            
+<section>
+    <article>
+        <header>
+            <a href="#">
+                <h1 id="implementing-related-posts-functionality-in-11ty">Implementing &quot;related posts&quot; functionality in 11ty</h1>
+            </a>
+            <span>
+                <time datetime="2026-05-15T20:59:09.406Z">May 15, 2026</time>
+            </span>
+        </header>
+        <p>My portfolio has project pages for my personal projects. These contain a mini write up describing what my project is about, typically with a link to said work, alongside information like technologies and languages used. This works nicely, but I wanted a little header at the end showing all the blog posts that relate to the project.</p>
+<p>Every post and project in my custom 11ty template has a <code>tags</code> field in their frontmatter: an array of strings containing words that relate to whatever the post or project is about.</p>
+<p>I tried searching for this, and couldn't find resources that suited my needs, so I decided to roll my own for fun!</p>
+<h2 id="the-solution">The solution</h2>
+<p>I knew I'd need to start with a filter. In 11ty, filters are special functions you can call from your templates. They're the main way your template communicates with 11ty's JavaScript. In my <code>project-post</code> template, I added the following:</p>
+<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>related-posts<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    {% set relatedPosts = (tags | relatedPosts(collections)) %}
+    {%if tags and relatedPosts.length > 1 %}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>More about this...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span>
+                {% for post in relatedPosts %}
+                    {% include "layouts/article-exerpt.html" %}
+                {% endfor %}
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    {%endif%}
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">></span></span></code></pre>
+<p>I defined the <code>relatedPosts</code> variable as the result of calling the <code>relatedPosts</code> filter. For the uninitiated, this is nunjucks, which is why the syntax looks a little... Unconventional. Before the vertical slash I'm passing the <code>tags</code> field into the <code>relatedPosts</code> filter, and when I call the <code>relatedPosts</code> filter, I'm passing in the <code>collections</code> variable, which contains all the different tags I've set across my posts and projects. The layout for the post excerpts remains the same thanks to the <code>article-exerpt</code> template I use on the home page!</p>
+<p>Now for the filter's code:</p>
+<pre class="language-javascript" tabindex="0"><code class="language-javascript">eleventyConfig<span class="token punctuation">.</span><span class="token function">addFilter</span><span class="token punctuation">(</span><span class="token string">"relatedPosts"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">tags<span class="token punctuation">,</span> collections</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">let</span> updatedTags <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>tags<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	updatedTags<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Remove the base collection like "blog" or "projects"</span>
+	<span class="token keyword">let</span> relatedPosts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	updatedTags<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">tag</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>collections<span class="token punctuation">[</span>tag<span class="token punctuation">]</span><span class="token punctuation">)</span>
+			<span class="token keyword">return</span><span class="token punctuation">;</span>
+		relatedPosts <span class="token operator">=</span> collections<span class="token punctuation">[</span>tag<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+	relatedPosts<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Remove the first match, which will always be the current page's</span>
+	<span class="token keyword">return</span> relatedPosts<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<p>I remove the first tag, as thats usually just what collection the content belongs to (e.g. <code>posts</code> or <code>projects</code>). Then, I go through all the tags of the content calling the filter, and I check if there's a matching &quot;collection&quot;, if there is, I get the top 4 posts in that collection. Finally, I remove the first related post, as that is always the post that's calling the filter in the first place!</p>
+<p>And the result? A related posts list at the end of my projects! Hope this helps anyone.</p>
 
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/agile-code-foss-and-context-switching/">
-            <h3 id="agile-code-refactoring-and-foss-projects">Agile code, refactoring, and FOSS projects</h3>
-        </a>
-        <p>
-            <time datetime="">Nov 12, 2025</time>
-        </p>
-    </header>
-    <p>
-        
-            Developing 11tyCMS has taught me so much about the impact of agile code on productivity. In early alpha, the code was inconsistent and difficult to follow. There were many quirks, all causing frequent bugs, slowing down debugging and draining  my energy. It was starting to put me off working on it.
-        
-
-    </p>
-</article>
-    
-    
-    <a class="button" href="/blog/">Previous</a>
-    
+    </article>
 </section>
         </main>
     </div>
