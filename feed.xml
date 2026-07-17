@@ -4,7 +4,7 @@
   <subtitle>I am writing about my experiences as a naval navel-gazer.</subtitle>
   <link href="https://jessieheald.com/feed.xml" rel="self" />
   <link href="https://jessieheald.com/" />
-  <updated>2026-06-07T23:46:41Z</updated>
+  <updated>2026-07-09T23:41:53Z</updated>
   <id>https://jessieheald.com/</id>
   <author>
     <name>Jessie Heald</name>
@@ -376,6 +376,28 @@ md&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;renderer&lt;span
 &lt;p&gt;IRCs and Discords are definitely &lt;em&gt;a&lt;/em&gt; solution, maybe not &lt;em&gt;the&lt;/em&gt; solution, mostly because of SEO. But again, as search engines get worse (unless folk switch to better search engines like Duck Duck Go), for how much longer is SEO a concern? I don&#39;t want this to be the case, but I fear we&#39;re losing the search-indexable internet as we know it. My biggest problem with IRCs and Discords is their temporality: conversations move at the speed of light, and unanswered questions are quickly buried. It&#39;s more effort and time to find solutions to problems, and that&#39;s not even mentioning the poor search functionality.&lt;/p&gt;
 &lt;p&gt;The central theme here is that coding without LLMs today is just harder. Reducing reliance on LLMs will likely cost you on time, but you&#39;ll gain skills. But- as community is the antidote to a bot-ridden, human-disconnected internet, human effort and craft is the antidote to LLM-driven slop code bases. Communal, human centered problem solving spaces will save us from LLMs gatekeeping our juniors from seniority.&lt;/p&gt;
 &lt;p&gt;Sadly, we need an &lt;em&gt;industry wide shift&lt;/em&gt; to return to human-driven development again. To recognize that speed isn&#39;t everything, that resources for humans to learn this craft are vital and irreplaceable. Until then, learning to code is harder now, so we owe it to each other to lend a &lt;strong&gt;human helping hand&lt;/strong&gt; where we can.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Can DuckDuckGo save me from AI slop? It&#39;s complicated...</title>
+    <link href="https://jessieheald.com/blog/switching-to-duck-duck-go-to-escape-slop/" />
+    <updated>2026-07-09T23:41:53Z</updated>
+    <id>https://jessieheald.com/blog/switching-to-duck-duck-go-to-escape-slop/</id>
+    <content type="html">&lt;p&gt;Google&#39;s been going down hill recently. Results are worse, Gemini is shoved down our throats... Everything just feels slow, clunky and laden with ads. Knowing that every key stroke and mouse movement is being forensically analyzed for profit doesn&#39;t help either.&lt;/p&gt;
+&lt;p&gt;Would another search engine cure my woes? I&#39;ve tried DuckDuckGo before, but it always felt Inferior? It would never keep up with my queries- especially with coding. I&#39;ve also tried StartPage, and while the results were great- it never felt right? They both had me manually typing in google.com to find what I wanted.&lt;/p&gt;
+&lt;p&gt;It&#39;s been 4 years since my last DuckDuckGo switch. Last time? I switched for 2 weeks, where I kept hitting blocks that required me to open Google, subsequently throwing me back into the smothering arms of Google all over again. Would it be any different in 2026?&lt;/p&gt;
+&lt;h2 id=&quot;duck-duck-go-in-2026-actually-good&quot;&gt;Duck Duck Go in 2026... Actually good???&lt;/h2&gt;
+&lt;p&gt;I bit the bullet. My phone, laptop and desktop: all Duck Duck Go. The first thing at the top of my searches? AI hallucination slop. This is part of what I switched to escape! At least make it opt in! Worse yet, the setting to disable it wouldn&#39;t work. I had to install a browser extension... But after that? It worked.&lt;/p&gt;
+&lt;p&gt;The results loaded faster, the UI felt less overstimulating- searches just felt less cumbersome somehow! I found stuff faster: coding questions that broke DDG years ago were no problem anymore, with relevant StackOverflow posts topping my results. More tricky queries like health questions were passable, not as good as Google, but serviceable! The news search functionality was also fine.&lt;/p&gt;
+&lt;p&gt;Overall, my DuckDuckGo experience was sufficient enough that opening Google felt like too much friction. Perfect! I&#39;ve found myself marveling over how much worse Google feels in comparison. Using DDG has felt like going back to the pre AI web in many respects.&lt;/p&gt;
+&lt;h3 id=&quot;the-gotcha&quot;&gt;The gotcha...&lt;/h3&gt;
+&lt;p&gt;This is all great, but there is a catch: you can have the best search engine in the world, but if it can&#39;t filter out AI slop? You&#39;re gonna get slop in your results. DDG is (unfortunately) no exception to this. The fact is: the web is just worse now. Slop articles are generated faster than real people can write. &lt;/p&gt;
+&lt;p&gt;None of this is unique to DDG though, and developing a discerning eye to AI slop can help.&lt;/p&gt;
+&lt;h2 id=&quot;google-sobriety&quot;&gt;Google sobriety&lt;/h2&gt;
+&lt;p&gt;I&#39;ve been Google free for over 3 months now. I&#39;ve only opened Google a hand full of times, and even when I do... Half the time the results are worse or no better anyway!&lt;/p&gt;
+&lt;p&gt;It feels so good to decenter a tech giant like Google from my internet experience. It feels even better knowing that the Alphabet panopticon can&#39;t track me as easily. &lt;/p&gt;
+&lt;p&gt;Is DuckDuckGo perfect? Definitely not. It is buying into the AI slop bubble, and it does use Bing for some (maybe even most) of its results. However, it does have its own crawler, which will no doubt play a bigger role in years to come. &lt;/p&gt;
+&lt;p&gt;Overall, I&#39;d say this switch was well worth it. Whenever I open up Google, I automatically want to switch back to DuckDuckGo. For me? The grass &lt;em&gt;is&lt;/em&gt; greener. I&#39;m very curious how others haven&#39;t found the same, but I feel lucky my experience has allowed me to switch.&lt;/p&gt;
 </content>
   </entry>
 </feed>
