@@ -4,7 +4,7 @@
   <subtitle>I am writing about my experiences as a naval navel-gazer.</subtitle>
   <link href="https://jessieheald.com/feed.xml" rel="self" />
   <link href="https://jessieheald.com/" />
-  <updated>2026-07-09T23:41:53Z</updated>
+  <updated>2026-08-06T20:51:45Z</updated>
   <id>https://jessieheald.com/</id>
   <author>
     <name>Jessie Heald</name>
@@ -398,6 +398,91 @@ md&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;renderer&lt;span
 &lt;p&gt;It feels so good to decenter a tech giant like Google from my internet experience. It feels even better knowing that the Alphabet panopticon can&#39;t track me as easily. &lt;/p&gt;
 &lt;p&gt;Is DuckDuckGo perfect? Definitely not. It is buying into the AI slop bubble, and it does use Bing for some (maybe even most) of its results. However, it does have its own crawler, which will no doubt play a bigger role in years to come. &lt;/p&gt;
 &lt;p&gt;Overall, I&#39;d say this switch was well worth it. Whenever I open up Google, I automatically want to switch back to DuckDuckGo. For me? The grass &lt;em&gt;is&lt;/em&gt; greener. I&#39;m very curious how others haven&#39;t found the same, but I feel lucky my experience has allowed me to switch.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tired of slow React forms? Try this.</title>
+    <link href="https://jessieheald.com/blog/tired-of-slow-react-forms-try-this/" />
+    <updated>2026-08-06T20:51:45Z</updated>
+    <id>https://jessieheald.com/blog/tired-of-slow-react-forms-try-this/</id>
+    <content type="html">&lt;p&gt;Since React&#39;s inception- the classic &amp;quot;state 101&amp;quot; tutorial/example has looked like this:&lt;/p&gt;
+&lt;pre class=&quot;language-jsx&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;myComponent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;fieldValue&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; setFieldValue&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;useState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;input&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;onChange&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;target&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setFieldValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;target&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;People get carried away with this example... Many use it years later- until they hit a complex form with 20 fields that won&#39;t scale. In many cases, it&#39;s a slow solution. Funny thing is: if we think more in line with vanilla JavaScript and HTML, we find a more performant answer with better a11ty to boot.&lt;/p&gt;
+&lt;h2 id=&quot;whats-wrong-with-using-state-for-forms&quot;&gt;What&#39;s wrong with using state for forms?&lt;/h2&gt;
+&lt;p&gt;To understand why this can be a sub-optimal way of dealing with inputs, we need to understand React&#39;s life cycle.&lt;/p&gt;
+&lt;p&gt;Whenever you use state in React, it will observe it. Whenever the state changes, React will:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Check for any props based state changes via &lt;code&gt;getDerrivedStateFromProps&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run the &lt;code&gt;shouldComponentUpdate&lt;/code&gt; function&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Render the changes via the &lt;code&gt;render&lt;/code&gt; function&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;This involves the Virtual DOM&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The Virtual DOM is a copy of the DOM used to compare which components need changing before rendering&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;This saves on performance, as React only updates elements that need changing&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Then, &lt;code&gt;getSnapshotBeforeUpdate&lt;/code&gt; gets called, providing the previous props and state before the DOM is altered reflecting the changes with the new state.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Now, DOM gets updated with all the changes.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Finally, the &lt;code&gt;componentDidUpdate&lt;/code&gt; function gets called.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now think: if you&#39;re using the &lt;code&gt;onChange&lt;/code&gt; event listener on multiple inputs across a whole form, imagine how intense that is. All 6 of those steps are running for each key stroke on every input!&lt;/p&gt;
+&lt;p&gt;No shame though. I&#39;ve done even worse &lt;code&gt;onChange&lt;/code&gt; crimes than this (think a singular function that sets the state of an &lt;em&gt;object&lt;/em&gt; based in input names)! There are brighter skies ahead.&lt;/p&gt;
+&lt;h2 id=&quot;so-what-do-we-do-instead&quot;&gt;So what do we do instead?&lt;/h2&gt;
+&lt;p&gt;I&#39;m so glad you asked: we gotta think &amp;quot;old school&amp;quot;!&lt;/p&gt;
+&lt;p&gt;In the age of the SPA web, it&#39;s easy to forget that forms have the &lt;code&gt;onSubmit&lt;/code&gt; event listener. Let&#39;s take a look:&lt;/p&gt;
+&lt;pre class=&quot;language-jsx&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;myComponent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;handleForm&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;preventDefault&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; inputValue &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;target&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;inputName&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    event&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;target&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;clear&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;form&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;onSubmit&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;handleForm&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;input&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;inputName&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;This can also be a variable!&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;required&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;input&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;submit&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token plain-text&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;form&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here we take advantage of the &lt;code&gt;handleForm&lt;/code&gt; event listener, this a function which only gets called on submission. This approach has several advantages:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;No expensive 6 function lifecycle operations on every key stroke&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No need for passing the &lt;code&gt;onChange&lt;/code&gt; prop to each input, only &lt;code&gt;name&lt;/code&gt; attributes needed.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Easy input value retrieval by referencing &lt;code&gt;event.target.inputName.value&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The ability to clear all fields in the onSubmit event listener via &lt;code&gt;event.target.clear()&lt;/code&gt;, no state binding required!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Better accessibility due to more descriptive DOM (using the form element makes it easier for screen readers to navigate your page)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;How do we initialize fields with values on load? With the simple but elegant &lt;code&gt;defaultValue&lt;/code&gt; HTML attribute. No need for &lt;code&gt;onChange&lt;/code&gt; and &lt;code&gt;value&lt;/code&gt; state binding here!&lt;/p&gt;
+&lt;p&gt;Obviously, this won&#39;t be the perfect approach in all scenarios, but it certainly fits most the ones I&#39;ve come across. It saves a tonne on performance and is much cleaner to work with too. The opportunities are endless. Enjoy!&lt;/p&gt;
 </content>
   </entry>
 </feed>

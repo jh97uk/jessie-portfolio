@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Jessie Heald</title>
+    <title>Tired of slow React forms? Try this. - Jessie Heald</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,7 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="My writing about everything coding and beyond!">
+    <meta name="description" content="Do you use React state to manage your form&#39;s input values like the tutorials taught you? Are you tired the slow and laggy forms that come as a result? Going back to basics might be your answer...">
     
 </head>
 
@@ -57,79 +57,97 @@
         </div>
 
         <main>
-            <section class="contrast">
-    <h2 id="i-m-writing-about">I'm writing about</h2>
-        <article>
-    <header>
-        <a href="/blog/tired-of-slow-react-forms-try-this/">
-            <h3 id="tired-of-slow-react-forms-try-this">Tired of slow React forms? Try this.</h3>
-        </a>
-        <p>
-            <time datetime="">Aug 6, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            Do you use React state to manage your form&#39;s input values like the tutorials taught you? Are you tired the slow and laggy forms that come as a result? Going back to basics might be your answer...
-        
+            
+<section>
+    <article>
+        <header>
+            <a href="#">
+                <h1 id="tired-of-slow-react-forms-try-this">Tired of slow React forms? Try this.</h1>
+            </a>
+            <span>
+                <time datetime="2026-08-06T20:51:45.502Z">Aug 6, 2026</time>
+            </span>
+        </header>
+        <p>Since React's inception- the classic &quot;state 101&quot; tutorial/example has looked like this:</p>
+<pre class="language-jsx" tabindex="0"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">myComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>fieldValue<span class="token punctuation">,</span> setFieldValue<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">onChange</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>target<span class="token punctuation">}</span></span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token function">setFieldValue</span><span class="token punctuation">(</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+<span class="token punctuation">}</span></code></pre>
+<p>People get carried away with this example... Many use it years later- until they hit a complex form with 20 fields that won't scale. In many cases, it's a slow solution. Funny thing is: if we think more in line with vanilla JavaScript and HTML, we find a more performant answer with better a11ty to boot.</p>
+<h2 id="whats-wrong-with-using-state-for-forms">What's wrong with using state for forms?</h2>
+<p>To understand why this can be a sub-optimal way of dealing with inputs, we need to understand React's life cycle.</p>
+<p>Whenever you use state in React, it will observe it. Whenever the state changes, React will:</p>
+<ul>
+<li>
+<p>Check for any props based state changes via <code>getDerrivedStateFromProps</code></p>
+</li>
+<li>
+<p>Run the <code>shouldComponentUpdate</code> function</p>
+</li>
+<li>
+<p>Render the changes via the <code>render</code> function</p>
+<ul>
+<li>
+<p>This involves the Virtual DOM</p>
+</li>
+<li>
+<p>The Virtual DOM is a copy of the DOM used to compare which components need changing before rendering</p>
+</li>
+<li>
+<p>This saves on performance, as React only updates elements that need changing</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Then, <code>getSnapshotBeforeUpdate</code> gets called, providing the previous props and state before the DOM is altered reflecting the changes with the new state.</p>
+</li>
+<li>
+<p>Now, DOM gets updated with all the changes.</p>
+</li>
+<li>
+<p>Finally, the <code>componentDidUpdate</code> function gets called.</p>
+</li>
+</ul>
+<p>Now think: if you're using the <code>onChange</code> event listener on multiple inputs across a whole form, imagine how intense that is. All 6 of those steps are running for each key stroke on every input!</p>
+<p>No shame though. I've done even worse <code>onChange</code> crimes than this (think a singular function that sets the state of an <em>object</em> based in input names)! There are brighter skies ahead.</p>
+<h2 id="so-what-do-we-do-instead">So what do we do instead?</h2>
+<p>I'm so glad you asked: we gotta think &quot;old school&quot;!</p>
+<p>In the age of the SPA web, it's easy to forget that forms have the <code>onSubmit</code> event listener. Let's take a look:</p>
+<pre class="language-jsx" tabindex="0"><code class="language-jsx"><span class="token keyword">function</span> <span class="token function">myComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">handleForm</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">{</span>
+    event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">const</span> inputValue <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>inputName<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">onSubmit</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>handleForm<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>inputName<span class="token punctuation">"</span></span> <span class="token attr-name">defaultValue</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>This can also be a variable!<span class="token punctuation">"</span></span> <span class="token attr-name">required</span><span class="token punctuation">/></span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span>
+<span class="token punctuation">}</span></code></pre>
+<p>Here we take advantage of the <code>handleForm</code> event listener, this a function which only gets called on submission. This approach has several advantages:</p>
+<ul>
+<li>
+<p>No expensive 6 function lifecycle operations on every key stroke</p>
+</li>
+<li>
+<p>No need for passing the <code>onChange</code> prop to each input, only <code>name</code> attributes needed.</p>
+</li>
+<li>
+<p>Easy input value retrieval by referencing <code>event.target.inputName.value</code>.</p>
+</li>
+<li>
+<p>The ability to clear all fields in the onSubmit event listener via <code>event.target.clear()</code>, no state binding required!</p>
+</li>
+<li>
+<p>Better accessibility due to more descriptive DOM (using the form element makes it easier for screen readers to navigate your page)</p>
+</li>
+</ul>
+<p>How do we initialize fields with values on load? With the simple but elegant <code>defaultValue</code> HTML attribute. No need for <code>onChange</code> and <code>value</code> state binding here!</p>
+<p>Obviously, this won't be the perfect approach in all scenarios, but it certainly fits most the ones I've come across. It saves a tonne on performance and is much cleaner to work with too. The opportunities are endless. Enjoy!</p>
 
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/switching-to-duck-duck-go-to-escape-slop/">
-            <h3 id="can-duckduckgo-save-me-from-ai-slop-its-complicated">Can DuckDuckGo save me from AI slop? It&#39;s complicated...</h3>
-        </a>
-        <p>
-            <time datetime="">Jul 10, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            I&#39;ve recently noticed my search results getting worse and worse. Google feels slower and clunkier every day, not to mention forcing Gemini down your throat. Can DuckDuckGo save me from the unceasing march of AI slop?
-        
-
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/the-llm-driven-death-of-stack-overflow/">
-            <h3 id="what-comes-after-the-slow-llm-driven-death-of-stackoverflow">What comes after the slow, LLM driven death of StackOverflow?</h3>
-        </a>
-        <p>
-            <time datetime="">Jun 8, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            StackOverflow is dying at the hands of generative AI. What does this mean for software engineering, and how will this impact our junior colleagues? Maybe *human* driven development and communities are the answer... 
-        
-
-    </p>
-</article>
-    
-        <article>
-    <header>
-        <a href="/blog/implementing-related-posts-functionality-in-11ty/">
-            <h3 id="implementing-related-posts-functionality-in-11ty">Implementing &quot;related posts&quot; functionality in 11ty</h3>
-        </a>
-        <p>
-            <time datetime="">May 15, 2026</time>
-        </p>
-    </header>
-    <p>
-        
-            Ever wondered how to make posts with related tags show up at the end of your blog post? With a simple filter and a bit of nunjucks magic, you too can have a related posts list!
-        
-
-    </p>
-</article>
-    
-        <a class="button" href="/blog/1/">Next</a>
-    
-    
+    </article>
 </section>
         </main>
     </div>
