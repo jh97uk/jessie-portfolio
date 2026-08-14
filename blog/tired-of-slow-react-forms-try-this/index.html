@@ -145,6 +145,20 @@
 </li>
 </ul>
 <p>How do we initialize fields with values on load? With the simple but elegant <code>defaultValue</code> HTML attribute. No need for <code>onChange</code> and <code>value</code> state binding here!</p>
+<h3 id="what-about-forms-with-many-fields">What about forms with many fields?</h3>
+<p>I like to loop through the <code>elements</code> object in the onSubmit handler:</p>
+<pre class="language-jsx" tabindex="0"><code class="language-jsx"><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+	event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">const</span> elements <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>elements<span class="token punctuation">;</span>
+	<span class="token keyword">const</span> elementKeys <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>elements<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">let</span> keyValues <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+	elementKeys<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">key</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+		<span class="token keyword">const</span> element <span class="token operator">=</span> elements<span class="token punctuation">[</span>key<span class="token punctuation">]</span>
+		<span class="token keyword">if</span> <span class="token punctuation">(</span>element<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+			keyValues<span class="token punctuation">[</span>element<span class="token punctuation">.</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> element<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This will go through each input in your form, and put a key value pair into an object based on the name and value of your input; perfect for sending as JSON to your REST API!</p>
 <p>Obviously, this won't be the perfect approach in all scenarios, but it certainly fits most the ones I've come across. It saves a tonne on performance and is much cleaner to work with too. The opportunities are endless. Enjoy!</p>
 
     </article>
