@@ -220,7 +220,6 @@ article header a {
 
 .hero p {
   font-size: 1.125rem;
-  margin-top: unset;
 }
 
 .hero h1 em {
@@ -577,7 +576,7 @@ a.button:hover {
 }
 
 pre[class*="language-"] {
-  background-color: var(--card-color);
+  background-color: #1b1025;
 }
 
 ul.inline-list {
@@ -647,6 +646,9 @@ nav li {
 .card.language picture {
   height: 35px;
   width: fit-content;
+}
+.pagination-buttons a.button:first-of-type {
+  margin-right: 1rem;
 }
 
 @media (min-width: 2160px) {
@@ -746,5 +748,9 @@ nav li {
 @media (max-width: 350px) {
   body {
     font-size: 13px;
+  }
+  .card ul {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
