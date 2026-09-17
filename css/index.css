@@ -64,6 +64,7 @@
 
 body {
   background-color: var(--secondary-color);
+  font-size: 16px;
 }
 
 h1,
@@ -428,7 +429,6 @@ nav {
 }
 
 article {
-  font-size: 16px;
   margin-bottom: 25px;
 }
 
@@ -555,11 +555,6 @@ article header h3 {
 article em {
   color: unset;
 }
-
-article {
-  font-size: 16px;
-}
-
 article h2 {
   font-size: 2.4em;
 }
@@ -746,5 +741,10 @@ nav li {
   header.hero img {
     filter: invert(72%) sepia(80%) saturate(1309%) hue-rotate(209deg)
       brightness(94%) contrast(85%);
+  }
+}
+@media (max-width: 350px) {
+  body {
+    font-size: 13px;
   }
 }

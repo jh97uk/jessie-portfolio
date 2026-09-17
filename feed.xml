@@ -559,7 +559,7 @@ md&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;renderer&lt;span
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;runTest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;db&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Connection pool&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It&#39;s quite basic: it only does a simple select, there&#39;s no WHERE clauses or anything. So imagine a production scenario where you have more complex JOIN queries or INSERT queries to think about.&lt;/p&gt;
+&lt;p&gt;It&#39;s quite basic: it only does a simple select, there&#39;s no WHERE clauses or anything. Also worth noting that this query will almost certainly cache itself anyway... So imagine a production scenario where you have more complex JOIN queries or INSERT queries to think about.&lt;/p&gt;
 &lt;p&gt;On my work machine, running the database queries 2000 times at the same time the results were:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Single database connection:&lt;/strong&gt; &lt;em&gt;370ms average mean&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Database connection pool:&lt;/strong&gt; &lt;em&gt;250ms average mean&lt;/em&gt;&lt;/p&gt;
