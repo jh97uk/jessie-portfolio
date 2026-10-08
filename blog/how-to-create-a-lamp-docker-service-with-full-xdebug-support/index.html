@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a LAMP docker service with full xdebug support for WSL (draft) - Jessie Heald</title>
+    <title>Creating a PHP Apache Docker service with full xdebug support on WSL - Jessie Heald</title>
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-italic.woff2" crossorigin="">
     <link rel="preload" as="font" type="font/woff2" href="/css/nunito-sans-v19-latin-regular.woff2" crossorigin="">
@@ -22,8 +22,7 @@
     <meta name="author" content="Jessie Heald">
     <meta name="fediverse:creator" content="@JessieHealdUK@defcon.social">
     
-    <meta name="description" content="
-">
+    <meta name="description" content="Ever wanted to debug a PHP application inside of a Docker service on a WSL enabled host machine? Me too! My solution has  saved me a lot of time for setting up the development environment.">
     
 </head>
 
@@ -63,13 +62,82 @@
     <article>
         <header>
             <a href="#">
-                <h1 id="creating-a-lamp-docker-service-with-full-xdebug-support-for-wsl-draft">Creating a LAMP docker service with full xdebug support for WSL (draft)</h1>
+                <h1 id="creating-a-php-apache-docker-service-with-full-xdebug-support-on-wsl">Creating a PHP Apache Docker service with full xdebug support on WSL</h1>
             </a>
             <span>
-                <time datetime="2026-08-14T00:31:37.655Z">Aug 14, 2026</time>
+                <time datetime="2026-09-20T00:31:37.655Z">Sep 20, 2026</time>
             </span>
         </header>
-        
+        <p>A recent project required PHP and Apache, I needed to refactor all the code. Trouble is? I couldn't get xdebug working with my PHP setup in WSL. I decided to containerise the Apache and PHP side of things anyway, because I had other PHP projects to work on and I didn't want conflicting configs... But how do you setup xdebug inside Docker to be available on the host machine?</p>
+<h2 id="the-php-apache-dockerfile">The PHP Apache Dockerfile</h2>
+<p>Before we setup our <code>dockercompose.yml</code>, we'll need a special Dockerfile with a few configs to setup PHP and xdebug. </p>
+<p>First our <code>Dockerfile</code> in our <code>/docker/php-xdebug</code> directory</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">FROM php:8.2-apache
+RUN apt-get update \
+    && apt-get install -y bash \
+    && docker-php-ext-install mysqli pdo_mysql \
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+EXPOSE 80</code></pre>
+<p>We install all the packages we need, and we enable the xdebug extension.</p>
+<p>Now we need our <code>xdebug.ini</code> file:</p>
+<pre class="language-Properties" tabindex="0"><code class="language-Properties">zend_extension=xdebug
+
+[xdebug]
+xdebug.mode=develop,debug
+xdebug.start_with_request=yes
+xdebug.client_host=host.docker.internal
+xdebug.client_port=9003
+xdebug.log_level=0
+xdebug.idekey=VSCODE</code></pre>
+<p>This will configure xdebug to use the <code>host.docker.internal</code> host, allowing it access to the host machine (and vice versa).</p>
+<p>Our PHP Apache xdebug service is ready!</p>
+<h2 id="docker-compose">Docker Compose</h2>
+<p>Now we're ready to bring all our services together:</p>
+<pre class="language-Dockerfile" tabindex="0"><code class="language-Dockerfile">services:
+  php-apache-xdebug:
+    build:
+      context: ./docker/php-apache-xdebug
+      dockerfile: Dockerfile
+    container_name: php-apache-xdebug
+    command: ["sh", "-c", "apache2-foreground"] 
+    volumes:
+      - ./html:/var/www/html
+      - ./docker/php-apache-xdebug/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    environment:
+      XDEBUG_MODE: debug
+      XDEBUG_CONFIG: "client_host=host.docker.internal client_port=9003 start_with_request=yes"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "80:80"
+    depends_on:
+      - mysql
+    networks:
+      - frontend
+      - backend
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    volumes:
+      - "./db/db.sql:/docker-entrypoint-initdb.d/db.sql"
+      - "./db/:/mysql/db"
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: ${DBPASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DBPASSWORD}
+      MYSQL_DATABASE: my_db
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge</code></pre>
+<p>The <code>environment</code> variables in <code>php-apache-debug</code> are vital, as they assign teh correct host and client ports for <code>xdebug</code>. But with that? You should be able to stick whatever PHP you like and debug it with VSCode's xdebug extensions, no issues!</p>
+
     </article>
 </section>
         </main>
